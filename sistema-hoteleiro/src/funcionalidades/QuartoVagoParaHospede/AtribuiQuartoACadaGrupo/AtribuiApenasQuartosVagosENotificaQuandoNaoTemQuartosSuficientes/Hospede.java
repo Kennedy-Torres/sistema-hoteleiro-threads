@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagos.tentativa02;
+package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagosENotificaQuandoNaoTemQuartosSuficientes;
 
 public class Hospede extends Thread{
     private String nome;

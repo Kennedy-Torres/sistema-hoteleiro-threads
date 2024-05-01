@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagos.tentativa02;
+package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagosENotificaQuandoNaoTemQuartosSuficientes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +29,11 @@ public class Quarto {
     public void adicionarHospede(Hospede hospede) {
         lock.lock();
         try{
-            // se o tamanho da lista de hospedes for maior que 4 neste quarto o quarto passa a  ter o status de indisponível
-//            hospedes.add(hospede);
-//            if (hospedes.size() >= 4) {disponivel = false;}
             hospedes.add(hospede);
-            disponivel = false; // em tese o quarto deixa de estar disponível assim que um hóspede é adicionado
+            // Atualizamos o status de disponibilidade do quarto apenas se estava vazio antes de adicionar o hóspede
+            if (hospedes.size() == 1) {
+                disponivel = false; // O quarto deixa de estar disponível assim que um hóspede é adicionado
+            }
         }finally {
             lock.unlock();
         }

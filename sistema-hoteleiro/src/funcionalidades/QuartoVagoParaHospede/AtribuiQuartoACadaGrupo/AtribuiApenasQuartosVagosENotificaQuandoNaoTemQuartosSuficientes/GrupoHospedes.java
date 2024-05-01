@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagos.tentativa02;
+package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagosENotificaQuandoNaoTemQuartosSuficientes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class GrupoHospedes {
         this.hospedes = new ArrayList<>();
     }
 
-    public void adicionarHospede(Hospede hospede) {
+    public void adicionarHospedeDentroDoGrupo(Hospede hospede) {
         hospedes.add(hospede);
     }
 

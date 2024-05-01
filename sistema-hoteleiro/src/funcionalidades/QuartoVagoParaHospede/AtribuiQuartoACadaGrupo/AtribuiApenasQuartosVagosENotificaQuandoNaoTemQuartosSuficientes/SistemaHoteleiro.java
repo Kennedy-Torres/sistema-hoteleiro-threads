@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagos.tentativa02;
+package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagosENotificaQuandoNaoTemQuartosSuficientes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,27 +16,27 @@ public class SistemaHoteleiro {
         List<GrupoHospedes> grupos = new ArrayList<>();
         GrupoHospedes grupo = new GrupoHospedes("Grupo 01");
 
-        grupo.adicionarHospede(new Hospede("John"));
-        grupo.adicionarHospede(new Hospede("Jane"));
-        grupo.adicionarHospede(new Hospede("Bob"));
-        grupo.adicionarHospede(new Hospede("jay"));
-        grupo.adicionarHospede(new Hospede("Leo"));
-        grupo.adicionarHospede(new Hospede("Leo2"));
-        grupo.adicionarHospede(new Hospede("Leo3"));
-        grupo.adicionarHospede(new Hospede("Leo4"));
-        grupo.adicionarHospede(new Hospede("Leo5"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("John"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Jane"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Bob"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("jay"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Leo"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Leo2"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Leo3"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Leo4"));
+        grupo.adicionarHospedeDentroDoGrupo(new Hospede("Leo5"));
         grupos.add(grupo);
         // Adicionando mais grupos de hóspedes, se necessário...
 
         GrupoHospedes grupo2 = new GrupoHospedes("Grupo 02");
-        grupo2.adicionarHospede(new Hospede("knd"));
-        grupo2.adicionarHospede(new Hospede("knd2"));
+        grupo2.adicionarHospedeDentroDoGrupo(new Hospede("knd"));
+        grupo2.adicionarHospedeDentroDoGrupo(new Hospede("knd2"));
+        grupo2.adicionarHospedeDentroDoGrupo(new Hospede("knd3"));
         grupos.add(grupo2);
 
         GrupoHospedes grupo3 = new GrupoHospedes("Grupo 03");
-        grupo3.adicionarHospede(new Hospede("ama"));
-        grupo3.adicionarHospede(new Hospede("ama2"));
-        grupo3.adicionarHospede(new Hospede("ama3"));
+        grupo3.adicionarHospedeDentroDoGrupo(new Hospede("ama"));
+        grupo3.adicionarHospedeDentroDoGrupo(new Hospede("ama2"));
         grupos.add(grupo3);
         //...
 

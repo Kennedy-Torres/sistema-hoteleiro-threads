@@ -7,7 +7,7 @@ public class SistemaHoteleiro {
     public static void main(String[] args) {
 
         List<Quarto> quartos = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) { // 10 quartos no total // ainda falta trabalhamos com a codição de exceção... caso não tenha quartos suficientes para todos os hospedes
+        for (int i = 1; i <= 4; i++) { // 10 quartos no total // ainda falta trabalhamos com a codição de exceção... caso não tenha quartos suficientes para todos os hospedes
             quartos.add(new Quarto(i)); // Capacidade máxima de 4 hóspedes por quarto
         }
 
