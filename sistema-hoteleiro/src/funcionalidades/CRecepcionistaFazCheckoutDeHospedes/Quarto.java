@@ -1,4 +1,4 @@
-package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao.VoltaDoPasseioEPegaAChaveNaRecepcao;
+package funcionalidades.CRecepcionistaFazCheckoutDeHospedes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +54,7 @@ public class Quarto {
     public void pegarChaveDaRecepcao() {
         chaveNaRecepcao = false; // Marca que a chave não está mais na recepção
         temHospedeDentroDoQuarto = true;
+        System.out.println("Grupo do quarto " + numeroQuarto + " pegou a chave na recepção).");
     }
 
     public void simularPasseio() { // em vez de ter simularPasseio podemos passar quarto.devolverChaveNaRecepcao
@@ -80,4 +81,9 @@ public class Quarto {
     public void setChaveNaRecepcao(boolean chaveNaRecepcao) {
         this.chaveNaRecepcao = chaveNaRecepcao;
     }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 }
+

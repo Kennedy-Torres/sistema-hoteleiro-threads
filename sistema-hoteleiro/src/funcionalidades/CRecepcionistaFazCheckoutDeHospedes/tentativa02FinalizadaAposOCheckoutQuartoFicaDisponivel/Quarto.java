@@ -1,4 +1,4 @@
-package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao.VoltaDoPasseioEPegaAChaveNaRecepcao;
+package funcionalidades.CRecepcionistaFazCheckoutDeHospedes.tentativa02FinalizadaAposOCheckoutQuartoFicaDisponivel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,8 @@ import java.util.concurrent.locks.ReentrantLock;
 // total de quartos = 10
 public class Quarto {
     private int numeroQuarto; // mudar o nome para iDDoQuarto
-    private List<Hospede> hospedes;
+    private List<Hospede> hospedesIndividuais;
+    private List<GrupoHospedes> grupos;
     private boolean disponivel; // mudar o nome para quartoDisponivel ...em relação a reserva -> estar vago ou não
     private Lock lock;
     private boolean chaveNaRecepcao = true;
@@ -18,7 +19,8 @@ public class Quarto {
 
     public Quarto(int numeroQuarto){
         this.numeroQuarto = numeroQuarto;
-        this.hospedes = new ArrayList<>();
+        this.hospedesIndividuais = new ArrayList<>();
+        this.grupos = new ArrayList<>();
         this.disponivel = true;
         this.lock = new ReentrantLock();
     }
@@ -27,17 +29,35 @@ public class Quarto {
         return disponivel;
     }
 
-    public void adicionarGrupoDeHospedeEmUmaLista(GrupoHospedes grupo) { // lista com varios grupos
+    public void adicionarGrupoDeHospedes(GrupoHospedes grupo) { // lista com varios grupos
         lock.lock();
         try{
-            hospedes.addAll(grupo.getHospedes());
-            if (hospedes.size() == grupo.getTamanho()/*1*/) {
+            grupos.add(grupo);
+            for (Hospede hospede : grupo.getHospedes()) {
+                hospedesIndividuais.add(hospede);
+            }
+            if (hospedesIndividuais.size() >= 1) {
                 // Atualizamos o status de disponibilidade do quarto apenas se estava vazio antes de adicionar o hóspede
                 disponivel = false; // O quarto deixa de estar disponível assim que um hóspede é adicionado
                 chaveNaRecepcao = false; // o quarto é entrege ao grupo de hospedes logo a chave não está mais na recepção
                 temHospedeDentroDoQuarto = true;
             }
         }finally {
+            lock.unlock();
+        }
+    }
+
+    public void removerGrupoDeHospedes(GrupoHospedes grupo) {
+        lock.lock();
+        try {
+            grupos.remove(grupo);
+            for (Hospede hospede : grupo.getHospedes()) {
+                hospedesIndividuais.remove(hospede);
+            }
+            if (hospedesIndividuais.isEmpty()) {
+                disponivel = true;
+            }
+        } finally {
             lock.unlock();
         }
     }
@@ -56,17 +76,13 @@ public class Quarto {
         temHospedeDentroDoQuarto = true;
     }
 
-    public void simularPasseio() { // em vez de ter simularPasseio podemos passar quarto.devolverChaveNaRecepcao
-        devolverChaveNaRecepcao();
-        temHospedeDentroDoQuarto = false;
+
+    public List<Hospede> getHospedesIndividuais() {
+        return hospedesIndividuais;
     }
 
-    public void simularRetornoDoPasseio() {
-        pegarChaveDaRecepcao();
-    }
-
-    public List<Hospede> getHospedes() {
-        return hospedes;
+    public List<GrupoHospedes> getGrupos() {
+        return grupos;
     }
 
     public int getNumeroQuarto() {
@@ -80,4 +96,9 @@ public class Quarto {
     public void setChaveNaRecepcao(boolean chaveNaRecepcao) {
         this.chaveNaRecepcao = chaveNaRecepcao;
     }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 }
+

@@ -1,4 +1,4 @@
-package funcionalidades.AQuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
+package funcionalidades.CRecepcionistaFazCheckoutDeHospedes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,39 +14,30 @@ public class SistemaHoteleiro {
 
         // Criando uma lista de grupos de hóspedes
         List<GrupoHospedes> grupos = new ArrayList<>();
-        GrupoHospedes grupo = new GrupoHospedes("Grupo 01");
+        GrupoHospedes grupo1 = new GrupoHospedes("Grupo 01");
 
-        grupo.adicionarHospede(new Hospede("John"));
-        grupo.adicionarHospede(new Hospede("Jane"));
-        grupo.adicionarHospede(new Hospede("Bob"));
-        grupo.adicionarHospede(new Hospede("jay"));
-        grupo.adicionarHospede(new Hospede("Leo"));
-        grupo.adicionarHospede(new Hospede("Leo2"));
-        grupo.adicionarHospede(new Hospede("Leo3"));
-        grupo.adicionarHospede(new Hospede("Leo4"));
-        grupo.adicionarHospede(new Hospede("Leo5"));
-        grupos.add(grupo);
+        grupo1.adicionarHospedeDentroDoGrupo(new Hospede("John"));
+        grupo1.adicionarHospedeDentroDoGrupo(new Hospede("Jane"));
+        grupo1.adicionarHospedeDentroDoGrupo(new Hospede("Bob"));
+        grupo1.adicionarHospedeDentroDoGrupo(new Hospede("jay"));
+        grupos.add(grupo1);
 
-        System.out.println("grupo1");
-        for (GrupoHospedes a : grupos) {
-            System.out.println("- " + a.getNome());
-            for (int i=0;i<a.getHospedes().size();i++){
-                System.out.println(a.getHospedes().get(i).getNome());
-            }
-        }
+
         // Adicionando mais grupos de hóspedes, se necessário...
 
         GrupoHospedes grupo2 = new GrupoHospedes("Grupo 02");
-        grupo2.adicionarHospede(new Hospede("knd"));
-        grupo2.adicionarHospede(new Hospede("knd2"));
+        grupo2.adicionarHospedeDentroDoGrupo(new Hospede("knd"));
+        grupo2.adicionarHospedeDentroDoGrupo(new Hospede("knd2"));
+        grupo2.adicionarHospedeDentroDoGrupo(new Hospede("knd3"));
         grupos.add(grupo2);
 
         GrupoHospedes grupo3 = new GrupoHospedes("Grupo 03");
-        grupo3.adicionarHospede(new Hospede("ama"));
-        grupo3.adicionarHospede(new Hospede("ama2"));
-        grupo3.adicionarHospede(new Hospede("ama3"));
+        grupo3.adicionarHospedeDentroDoGrupo(new Hospede("ama"));
+        grupo3.adicionarHospedeDentroDoGrupo(new Hospede("ama2"));
         grupos.add(grupo3);
         //...
+
+
 
         List<Recepcionista> recepcionistas = new ArrayList<>();
         /**
@@ -74,5 +65,32 @@ public class SistemaHoteleiro {
         for (Recepcionista recepcionista : recepcionistas) {
             recepcionista.start();
         }
+
+        // ----------
+        // ----------
+        // ----------
+        /**
+         *  Quando os hospedes de um quarto saem do hotel para passear,
+         *  devem deixar a chave na recepcao;
+         * */
+        // "trava para a thread main" para conseguirmos os dados fornecido
+        // pela thread recepcionista antes de continuar o código
+        for (Recepcionista recepcionista : recepcionistas) {
+            try {
+                recepcionista.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        // ----------
+        grupo1.simularPasseio(quartos.get(0));
+
+        grupo2.simularPasseio(quartos.get(1));
+        // ----------
+        // ----------
+
+
     }
 }

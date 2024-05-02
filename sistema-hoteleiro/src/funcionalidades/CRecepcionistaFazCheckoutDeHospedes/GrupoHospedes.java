@@ -1,4 +1,4 @@
-package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao.VoltaDoPasseioEPegaAChaveNaRecepcao;
+package funcionalidades.CRecepcionistaFazCheckoutDeHospedes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +26,18 @@ public class GrupoHospedes {
 
     // Método para simular a saída do grupo para o passeio
     private void simulaSaida(Quarto quarto) {
-        System.out.print("O "+nome+" do quarto"+quarto.getNumeroQuarto()+" foi passear; (");
+
         // Devolve a chave na recepção
         quarto.devolverChaveNaRecepcao(); // Simula a saída do grupo do quarto para passear
 //        quarto.simularPasseio(); // Simula a saída do grupo do quarto para passear ... dps retirar o metodo na classe quarto
-        System.out.println(nome+" DEIXOU A CHAVE do quarto"+quarto.getNumeroQuarto()+" na recepção).");
     }
 
     // Método para simular o retorno do grupo do passeio
     private void simulaEntrada(Quarto quarto) {
         // Pega a chave na recepção
-        System.out.print("O "+nome+" do quarto"+quarto.getNumeroQuarto()+" voltou do passeio; (");
+        System.out.print("O grupo do quarto"+quarto.getNumeroQuarto()+" voltou do passeio; (");
         quarto.pegarChaveDaRecepcao();
 //        quarto.simularRetornoDoPasseio(); ... dps retirar o metodo na classe quarto
-        System.out.println(nome+" PEGOU A CHAVE do quarto"+quarto.getNumeroQuarto()+" na recepção).");
     }
 
     // Método para pegar a chave na recepção ao retornar do passeio

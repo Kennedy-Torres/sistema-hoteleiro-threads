@@ -1,4 +1,4 @@
-package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao.VoltaDoPasseioEPegaAChaveNaRecepcao;
+package funcionalidades.CRecepcionistaFazCheckoutDeHospedes.tentativa02FinalizadaAposOCheckoutQuartoFicaDisponivel;
 
 import java.util.ArrayList;
 import java.util.List;

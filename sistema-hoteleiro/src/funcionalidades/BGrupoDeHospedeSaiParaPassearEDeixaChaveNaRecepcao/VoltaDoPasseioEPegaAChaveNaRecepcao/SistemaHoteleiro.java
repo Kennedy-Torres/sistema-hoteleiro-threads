@@ -86,7 +86,6 @@ public class SistemaHoteleiro {
             }
         }
 
-
         System.out.println("(teste) Número de hóspedes no quarto"+quartos.get(1).getNumeroQuarto()+": " +quartos.get(1).getHospedes().size());
         // Simula a saída do grupo para passear
 //        grupo.simularSaidaParaPassear(quartos.get(1)); // Supondo que o grupo saia do primeiro quarto
