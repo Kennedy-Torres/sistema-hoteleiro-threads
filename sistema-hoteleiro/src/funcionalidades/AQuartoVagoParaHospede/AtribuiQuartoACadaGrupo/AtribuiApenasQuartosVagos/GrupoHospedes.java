@@ -1,12 +1,14 @@
-package funcionalidades.QuartoVagoParaHospede;
+package funcionalidades.AQuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagos;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GrupoHospedes {
+    private String nome;
     private List<Hospede> hospedes;
 
-    public GrupoHospedes() {
+    public GrupoHospedes(String nome) {
+        this.nome = nome;
         this.hospedes = new ArrayList<>();
     }
 
@@ -20,5 +22,9 @@ public class GrupoHospedes {
 
     public List<Hospede> getHospedes() {
         return hospedes;
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

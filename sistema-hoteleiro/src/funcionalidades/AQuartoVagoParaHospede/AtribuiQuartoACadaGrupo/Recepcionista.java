@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede;
+package funcionalidades.AQuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ public class Recepcionista extends Thread{
     private String nome;
     private List<Quarto> quartosDisponiveis;
     private List<GrupoHospedes> grupos;
+
 
 
     public Recepcionista(String nome, List<Quarto> quartosDisponiveis, List<GrupoHospedes> grupos) {
@@ -27,7 +28,7 @@ public class Recepcionista extends Thread{
                             } else {
                                 // Se o grupo for maior que 4, dividir em grupos menores
                                 while (grupo.getTamanho() > 0) {
-                                    GrupoHospedes novoGrupo = new GrupoHospedes();
+                                    GrupoHospedes novoGrupo = new GrupoHospedes(grupo.getNome());
                                     for (int i = 0; i < 4 && grupo.getTamanho() > 0; i++) {
                                         novoGrupo.adicionarHospede(grupo.getHospedes().get(0));
                                         grupo.getHospedes().remove(0);
@@ -50,8 +51,8 @@ public class Recepcionista extends Thread{
     }
 
     private void alocarGrupo(Quarto quarto, GrupoHospedes grupo) {
-        System.out.println("Recepcionista " + nome + " alocando quarto " + quarto.getNumeroQuarto() +
-                " para grupo de hóspedes de tamanho " + grupo.getTamanho() + ".");
+        System.out.println("Recepcionista- " + nome + " alocando quarto " + quarto.getNumeroQuarto() +
+                " para "+ grupo.getNome()+"; (está com " + grupo.getTamanho() + " membros dentro do quarto).");
         List<Hospede> hospedesNoQuarto = quarto.getHospedes();
         for (Hospede hospede : grupo.getHospedes()) {
             if (hospedesNoQuarto.size() < 4) {
@@ -77,9 +78,7 @@ public class Recepcionista extends Thread{
     }
 
 
-
-
-//    public void realizarCheckIn(int numeroDeHospedesDoGrupo) {
+    //    public void realizarCheckIn(int numeroDeHospedesDoGrupo) {
 //        int numeroDeQuartosNecessarios = (int) Math.ceil((double) numeroDeHospedesDoGrupo / 4);
 //
 //        // Verifica se há quartos disponíveis suficientes para acomodar o grupo

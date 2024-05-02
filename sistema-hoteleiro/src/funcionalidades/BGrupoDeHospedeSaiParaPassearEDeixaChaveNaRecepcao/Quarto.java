@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
+package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ public class Quarto {
     private List<Hospede> hospedes;
     private boolean disponivel; // mudar o nome para quartoDisponivel ...em relação a reserva -> estar vago ou não
     private Lock lock;
+    private boolean chaveNaRecepcao = true;
 
     public Quarto(int numeroQuarto){
         this.numeroQuarto = numeroQuarto;
@@ -21,7 +22,6 @@ public class Quarto {
         this.lock = new ReentrantLock();
     }
 
-
     public boolean isDisponivel() {
         return disponivel;
     }
@@ -29,14 +29,21 @@ public class Quarto {
     public void adicionarHospede(Hospede hospede) {
         lock.lock();
         try{
-            // se o tamanho da lista de hospedes for maior que 4 neste quarto o quarto passa a  ter o status de indisponível
             hospedes.add(hospede);
-            if (hospedes.size() >= 4) {
-                disponivel = false;
-
+            // Atualizamos o status de disponibilidade do quarto apenas se estava vazio antes de adicionar o hóspede
+            if (hospedes.size() == 1) {
+                disponivel = false; // O quarto deixa de estar disponível assim que um hóspede é adicionado
+                setChaveNaRecepcao(false); // o quarto é entrege ao grupo de hospedes logo a chave não está mais na recepção
             }
         }finally {
             lock.unlock();
+        }
+    }
+
+    public void devolverChaveNaRecepcao() {
+        if (hospedes.isEmpty()) { // Se não há hóspedes no quarto
+            chaveNaRecepcao = true; // Marca que a chave está na recepção
+            System.out.println("Chave do quarto " + numeroQuarto + " foi devolvida na recepção.");
         }
     }
 
@@ -46,5 +53,13 @@ public class Quarto {
 
     public int getNumeroQuarto() {
         return numeroQuarto;
+    }
+
+    public boolean isChaveNaRecepcao() { // getter
+        return chaveNaRecepcao;
+    }
+
+    public void setChaveNaRecepcao(boolean chaveNaRecepcao) {
+        this.chaveNaRecepcao = chaveNaRecepcao;
     }
 }

@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede;
+package funcionalidades.AQuartoVagoParaHospede;
 
 import java.util.ArrayList;
 import java.util.List;

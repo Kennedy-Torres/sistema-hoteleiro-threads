@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
+package funcionalidades.AQuartoVagoParaHospede;
 
 public class Hospede extends Thread{
     private String nome;

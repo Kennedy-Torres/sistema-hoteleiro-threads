@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
+package funcionalidades.AQuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagos;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class Recepcionista extends Thread{
                         break; // Uma vez que todos os grupos foram alocados, a tarefa do recepcionista está completa
                     }
                 } else {
-                    System.out.println("Recepcionista " + nome + " esperando por quartos disponíveis.");
+                    System.out.println("Recepcionista " + nome + " não tem quarto disponível no momento; (esperando por quartos disponíveis).");
                     Thread.sleep(1000); // Espera um segundo antes de tentar novamente
                 }
             } catch (InterruptedException e) {
@@ -51,30 +51,46 @@ public class Recepcionista extends Thread{
     }
 
     private void alocarGrupo(Quarto quarto, GrupoHospedes grupo) {
-        System.out.println("Recepcionista- " + nome + " alocando quarto " + quarto.getNumeroQuarto() +
-                " para "+ grupo.getNome()+"; (está com " + grupo.getTamanho() + " membros dentro do quarto).");
-        List<Hospede> hospedesNoQuarto = quarto.getHospedes();
-        for (Hospede hospede : grupo.getHospedes()) {
-            if (hospedesNoQuarto.size() < 4) {
-                hospedesNoQuarto.add(hospede);
-            } else {
-                break;
+        if(quarto.isDisponivel()) {
+            System.out.println("Recepcionista- " + nome + " alocando quarto " + quarto.getNumeroQuarto() +
+                    " para " + grupo.getNome() + "; (está com " + grupo.getTamanho() + " membros dentro do quarto).");
+            List<Hospede> hospedesNoQuarto = quarto.getHospedes();
+            for (Hospede hospede : grupo.getHospedes()) {
+                if (hospedesNoQuarto.size() < 4) {
+                    hospedesNoQuarto.add(hospede);
+                } else {
+                    break;
+                }
             }
-        }
-        if (hospedesNoQuarto.size() >= 4) {
-            quarto.adicionarHospede(new Hospede("Grupo"));
+            if (hospedesNoQuarto.size() >= 4) {
+                quarto.adicionarHospede(new Hospede("Grupo"));
+            }
+
+        }else{
+            System.out.println("Recepcionista.. " + nome + " não pode alocar o quarto " + quarto.getNumeroQuarto() +
+                    " para " + grupo.getNome() + "; (O quarto já está ocupado).");
+            // Se o quarto não estiver disponível, tenta alocar o grupo em outro quarto
+
+
+            alocarGrupo(procurarQuartoDisponivel(), grupo);
+
         }
     }
 
 
-
     private Quarto procurarQuartoDisponivel() {
         for (Quarto quarto : quartosDisponiveis) {
-            if (quarto.isDisponivel()) {
+
+            if (quarto.isDisponivel() && !quartoPossuiHospedes(quarto)) {
                 return quarto;
             }
         }
+
         return null;
+    }
+
+    private boolean quartoPossuiHospedes(Quarto quarto) {
+        return !quarto.getHospedes().isEmpty();
     }
 
 

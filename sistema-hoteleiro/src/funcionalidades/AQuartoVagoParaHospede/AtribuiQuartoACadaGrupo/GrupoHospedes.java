@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
+package funcionalidades.AQuartoVagoParaHospede.AtribuiQuartoACadaGrupo;
 
 import java.util.ArrayList;
 import java.util.List;

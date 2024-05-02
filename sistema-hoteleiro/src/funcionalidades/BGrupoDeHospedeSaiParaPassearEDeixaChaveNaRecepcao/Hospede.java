@@ -1,4 +1,4 @@
-package funcionalidades.QuartoVagoParaHospede;
+package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao;
 
 public class Hospede extends Thread{
     private String nome;

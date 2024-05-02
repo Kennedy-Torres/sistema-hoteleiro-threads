@@ -1,7 +1,9 @@
-package funcionalidades.QuartoVagoParaHospede.AtribuiQuartoACadaGrupo.AtribuiApenasQuartosVagosENotificaQuandoNaoTemQuartosSuficientes;
+package funcionalidades.BGrupoDeHospedeSaiParaPassearEDeixaChaveNaRecepcao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class SistemaHoteleiro {
     public static void main(String[] args) {
@@ -40,6 +42,8 @@ public class SistemaHoteleiro {
         grupos.add(grupo3);
         //...
 
+
+
         List<Recepcionista> recepcionistas = new ArrayList<>();
         /**
         * Iremos atribuir grupos específicos a cada thread de Recepcionista de maneira equilibrada,
@@ -66,5 +70,52 @@ public class SistemaHoteleiro {
         for (Recepcionista recepcionista : recepcionistas) {
             recepcionista.start();
         }
+
+        // ----------
+        // ----------
+        // ----------
+        /**
+         *  Quando os hospedes de um quarto saem do hotel para passear,
+         *  devem deixar a chave na recepcao;
+         * */
+        // "trava para a thread main" para conseguirmos os dados fornecido
+        // pela thread recepcionista antes de continuar o código
+        for (Recepcionista recepcionista : recepcionistas) {
+            try {
+                recepcionista.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        System.out.println("Número de hóspedes no quarto"+quartos.get(1).getNumeroQuarto()+": " +quartos.get(1).getHospedes().size());
+        // Simula a saída do grupo para passear
+        grupo.simularSaidaParaPassear(quartos.get(1)); // Supondo que o grupo saia do primeiro quarto
+        System.out.println("Número de hóspedes(assim que sairam para passear) no quarto"+quartos.get(1).getNumeroQuarto()+": " +quartos.get(1).getHospedes().size());
+
+        // Verifica se a chave está na recepção
+        boolean chaveNaRecepcao = quartos.get(1).isChaveNaRecepcao(); // Verifica o primeiro quarto
+
+        if (chaveNaRecepcao) {
+            System.out.println("A chave foi devolvida na recepção; ("+grupos.get(1).getNome()+" saiu para passear).");
+        } else {
+            System.out.println("A chave não foi devolvida na recepção.");
+        }
+
+        // Após o passeio, o grupo retorna para o quarto
+        grupo.retornarParaQuarto(quartos.get(1));
+        chaveNaRecepcao = false;
+        if (!chaveNaRecepcao) {
+            System.out.println("O "+grupos.get(1).getNome()+" pegou a chave da recepção");
+        } else {
+            System.out.println("O "+grupos.get(1).getNome()+" não pegou a chave da recepção");
+        }
+        System.out.println("Número de hóspedes no quarto"+quartos.get(1).getNumeroQuarto()+": " +quartos.get(1).getHospedes().size());
+        // ----------
+        // ----------
+        // ----------
+
+
     }
 }
