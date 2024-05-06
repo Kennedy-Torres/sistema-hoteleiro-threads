@@ -1,4 +1,4 @@
-package funcionalidades.DHospedeTentaAlugarQuarto;
+import funcionalidades.DHospedeTentaAlugarQuarto.Quarto;
 
 public class Hospede extends Thread {
     private String nome;
@@ -30,7 +30,6 @@ public class Hospede extends Thread {
             e.printStackTrace();
         }
         System.out.println("Hóspede " + nome + " não conseguiu alugar um quarto e está indo embora.");
-        // Se não conseguiu alugar o quarto após tentativas, registra uma reclamação e encerra a thread
     }
 
     // Método para alugar um quarto disponível

@@ -28,6 +28,12 @@ public class Camareira extends Thread{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            try{
+                Thread.sleep(30000); // conta 30 segundos e encerra o expediente
+                break;
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package funcionalidades.DHospedeTentaAlugarQuarto;
+import funcionalidades.DHospedeTentaAlugarQuarto.GrupoHospedes;
 
 import java.util.ArrayList;
 import java.util.List;
