@@ -1,6 +1,3 @@
-import funcionalidades.DHospedeTentaAlugarQuarto.Camareira;
-import funcionalidades.DHospedeTentaAlugarQuarto.Hospede;
-import funcionalidades.DHospedeTentaAlugarQuarto.Quarto;
 
 import java.util.ArrayList;
 import java.util.List;
