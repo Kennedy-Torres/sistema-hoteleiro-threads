@@ -1,5 +1,3 @@
-import funcionalidades.DHospedeTentaAlugarQuarto.GrupoHospedes;
-import funcionalidades.DHospedeTentaAlugarQuarto.Quarto;
 
 import java.util.List;
 
