@@ -62,11 +62,9 @@ public class SistemaHoteleiro {
          * porção dos grupos para lidar.
          * */
         int numGrupos = grupos.size();
-        int numRecepcionistas = Math.min(numGrupos, 5/*recepcionistas.size()*/); // Limitando o número de recepcionistas ao número de grupos ou 5, o que for menor
+        int numRecepcionistas = Math.min(numGrupos, 5); // Limitando o número de recepcionistas ao número de grupos ou 5, o que for menor
 
 
-
-        // Cria uma thread de Recepcionista para cada grupo - > cada thread é associada a um grupo específico de hóspedes
         /**
         * 1ºNvl-Paralelismo: Multiplas threads de recepcionista podem ser criadas/inicializadas e
          * cada uma lida com um grupos diferentes de hospedes
