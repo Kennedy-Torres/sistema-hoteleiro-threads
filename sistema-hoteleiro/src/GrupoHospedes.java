@@ -19,9 +19,6 @@ public class GrupoHospedes {
     }
     // ---
 
-
-    // ---
-    // ---
     // Método para simular o passeio do grupo
     public void simularPasseio(Quarto quarto) {
         simulaSaida(quarto);
@@ -46,9 +43,6 @@ public class GrupoHospedes {
     }
 
     // ---
-    // ---
-
-
 
     // getters
     public int getTamanho() {
