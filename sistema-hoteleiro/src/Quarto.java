@@ -1,4 +1,3 @@
-import funcionalidades.DHospedeTentaAlugarQuarto.GrupoHospedes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,20 +54,20 @@ public class Quarto {
         }
     }
 
-
-    public void devolverChaveNaRecepcao() {
+    // uma thread por vez devolve a chave na recepcao
+    public synchronized void devolverChaveNaRecepcao() {
         if (!TemGenteDentroDoQuarto) { // Se não há hóspedes no quarto ... camareira entra
             chaveNaRecepcao = true; // Marca que a chave está na recepção
-//            System.out.println("Chave foi devolvida na recepção).");
             System.out.println("Chave do quarto " + numeroQuarto + " foi devolvida na recepção.");
         }
     }
 
-    // Método para pegar a chave da recepção
-    public void pegarChaveDaRecepcao() {
+    // uma thread por vez pega a chave da recepção
+    public synchronized void pegarChaveDaRecepcao() {
         chaveNaRecepcao = false; // Marca que a chave não está mais na recepção
         TemGenteDentroDoQuarto = true;
     }
+
 
     public List<GrupoHospedes> getGrupos() {
         return grupos;
@@ -78,11 +77,11 @@ public class Quarto {
         return numeroQuarto;
     }
 
-    public boolean isChaveNaRecepcao() { // getter
+    public synchronized boolean isChaveNaRecepcao() {
         return chaveNaRecepcao;
     }
 
-    public void setChaveNaRecepcao(boolean chaveNaRecepcao) {
+    public synchronized void setChaveNaRecepcao(boolean chaveNaRecepcao) {
         this.chaveNaRecepcao = chaveNaRecepcao;
     }
 
