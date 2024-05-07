@@ -1,4 +1,4 @@
-package Programa;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,36 +19,33 @@ public class GrupoHospedes {
     }
     // ---
 
-
-    // ---
-    // ---
     // Método para simular o passeio do grupo
     public void simularPasseio(Quarto quarto) {
         simulaSaida(quarto);
-        // Realiza outras atividades durante o passeio, ...faltou... parte em que camareira devere entrar
         simulaEntrada(quarto);
     }
 
-    // Simula a saída do grupo do quarto para passear
+// Simula a saída do grupo do quarto para passear
     private void simulaSaida(Quarto quarto) {
-        // Devolve a chave na recepção
-        System.out.print("O "+this.getNome()+" foi passear; (");
-        quarto.devolverChaveNaRecepcao();
-        System.out.println(nome+" DEIXOU A CHAVE do quarto na recepção).");
+    	synchronized (quarto) {
+    		// Devolve a chave na recepção
+            System.out.print("O "+this.getNome()+" foi passear; (");
+            quarto.devolverChaveNaRecepcao();
+            System.out.println(nome+" DEIXOU A CHAVE do quarto na recepção).");
+		}
     }
 
     // Simular o retorno do grupo do passeio para o quarto
     private void simulaEntrada(Quarto quarto) {
-        // Pega a chave na recepção
-        System.out.print(this.getNome()+" voltou do passeio; (");
-        quarto.pegarChaveDaRecepcao();
-        System.out.println(nome+" PEGOU A CHAVE do quarto na recepção).");
+        synchronized (quarto) {
+        	// Pega a chave na recepção
+            System.out.print(this.getNome()+" voltou do passeio; (");
+            quarto.pegarChaveDaRecepcao();
+            System.out.println(nome+" PEGOU A CHAVE do quarto na recepção).");
+		}
     }
 
     // ---
-    // ---
-
-
 
     // getters
     public int getTamanho() {
