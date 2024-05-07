@@ -24,7 +24,15 @@ public class Hospede extends Thread {
                 return; // Retorna se o quarto foi alocado com sucesso
             } else {
                 // Se não há quarto disponível, espera por um segundo antes de tentar novamente
-                Thread.sleep(1000);
+                Thread.sleep(2000);
+                // pós 2 segundo tenta de novo alugar um quarto disponível
+				if (quartoDisponivel != null) {
+					alugarQuarto(quartoDisponivel);
+					System.out.println("Hóspede " + nome + " alugou um quarto.");
+					return;
+				} else {
+					System.out.println("(Reclamacao)-Hospede " + nome + " nao conseguiu alugar um quarto e esta indo embora.");
+				}
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
