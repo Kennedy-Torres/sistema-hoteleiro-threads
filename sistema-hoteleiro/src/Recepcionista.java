@@ -124,7 +124,6 @@ public class Recepcionista extends Thread {
                 quarto.setDisponivel(true);
                 System.out.println("Recepcionista- " + nome + " realizou o check-out do " + grupo.getNome() + " para o quarto " + quarto.getNumeroQuarto());
                 System.out.println("Quarto " + quarto.getNumeroQuarto() + " agora está disponível para novos hóspedes.");
-//                System.out.println("Estado atual do quarto " + quarto.getNumeroQuarto() + ":"+quarto.isDisponivel()+"\n--------------------------------------------------------");
             }
         }
     }
