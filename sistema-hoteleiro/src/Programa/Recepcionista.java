@@ -1,5 +1,3 @@
-package Programa;
-
 import java.util.List;
 
 public class Recepcionista extends Thread {
