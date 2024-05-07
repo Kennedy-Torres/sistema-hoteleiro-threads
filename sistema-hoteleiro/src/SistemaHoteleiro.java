@@ -15,7 +15,6 @@ public class SistemaHoteleiro {
             quartos.add(new Quarto(i)); // Capacidade máxima de 4 hóspedes por quarto
         }
 
-
         // simulando a situação que teriamos 5 grupos com total:50 hospedes
         // Criando uma lista de grupos de hóspedes -
         List<GrupoHospedes> grupos = new ArrayList<>();
@@ -58,9 +57,6 @@ public class SistemaHoteleiro {
             camareiras.get(i).start();
         }
 
-
-
-
         List<Recepcionista> recepcionistas = new ArrayList<>();
         /**
         * Iremos atribuir grupos específicos a cada thread de Recepcionista de maneira equilibrada,
@@ -69,7 +65,6 @@ public class SistemaHoteleiro {
          * */
         int numGrupos = grupos.size();
         int numRecepcionistas = Math.min(numGrupos, 5/*recepcionistas.size()*/); // Limitando o número de recepcionistas ao número de grupos ou 5, o que for menor
-
 
 
         // Cria uma thread de Recepcionista para cada grupo - > cada thread é associada a um grupo específico de hóspedes
@@ -89,8 +84,7 @@ public class SistemaHoteleiro {
         }
 
         // ----------
-        // ----------
-        // ----------
+       
         /**
          *  Quando os hospedes de um quarto saem do hotel para passear,
          *  devem deixar a chave na recepcao;
@@ -105,15 +99,11 @@ public class SistemaHoteleiro {
             }
         }
 
-
         // ----------
         grupo1.simularPasseio(quartos.get(0));
         grupo2.simularPasseio(quartos.get(1));
         grupo3.simularPasseio(quartos.get(2));
         grupo4.simularPasseio(quartos.get(3));
         // ----------
-        // ----------
-
-
     }
 }
