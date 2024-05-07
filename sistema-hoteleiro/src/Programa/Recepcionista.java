@@ -94,7 +94,7 @@ public class Recepcionista extends Thread {
     }
 
     // Procura por um quarto disponível na lista de quartos
-    private Quarto procurarQuartoDisponivel() {
+    private synchronized Quarto procurarQuartoDisponivel() {
         for (Quarto quarto : quartosDisponiveis) {
             if (quarto.isDisponivel()) {
                 return quarto;
@@ -102,6 +102,7 @@ public class Recepcionista extends Thread {
         }
         return null;
     }
+
 
 
     private void temporizarEstadia(GrupoHospedes grupo, Quarto quarto) {
