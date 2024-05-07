@@ -1,11 +1,3 @@
-package Programa;
-
-import funcionalidades.DHospedeTentaAlugarQuarto.Camareira;
-import funcionalidades.DHospedeTentaAlugarQuarto.GrupoHospedes;
-import funcionalidades.DHospedeTentaAlugarQuarto.Hospede;
-import funcionalidades.DHospedeTentaAlugarQuarto.Quarto;
-import funcionalidades.DHospedeTentaAlugarQuarto.Recepcionista;
-
 import java.util.ArrayList;
 import java.util.List;
 
