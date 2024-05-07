@@ -1,5 +1,3 @@
-import funcionalidades.DHospedeTentaAlugarQuarto.Quarto;
-
 public class Hospede extends Thread {
     private String nome;
 
