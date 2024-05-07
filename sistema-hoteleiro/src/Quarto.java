@@ -70,9 +70,6 @@ public class Quarto {
         TemGenteDentroDoQuarto = true;
     }
 
-
-
-
     public List<GrupoHospedes> getGrupos() {
         return grupos;
     }
