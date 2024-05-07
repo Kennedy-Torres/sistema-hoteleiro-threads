@@ -1,4 +1,3 @@
-package Programa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +8,9 @@ import java.util.concurrent.locks.ReentrantLock;
 // 1 quarto -> 1 chave
 // total de quartos = 10
 public class Quarto {
-    private int numeroQuarto; // mudar o nome para iDDoQuarto
+    private int numeroQuarto;
     private List<GrupoHospedes> grupos;
-    private boolean disponivel; // mudar o nome para quartoDisponivel ...em relação a reserva -> estar vago ou não
+    private boolean disponivel; //...em relação a reserva -> estar vago ou não
     private Lock lock;
     private boolean chaveNaRecepcao = true;
     private boolean TemGenteDentroDoQuarto = false;
@@ -35,7 +34,7 @@ public class Quarto {
             // Atualizamos o status de disponibilidade do quarto apenas se estava vazio antes de adicionar o grupo
             if (grupos.size() >= 1) {
                 disponivel = false; // O quarto deixa de estar disponível assim que um grupo é adicionado
-                chaveNaRecepcao = false; // o quarto é entrege ao grupo de hospedes logo a chave não está mais na recepção
+                chaveNaRecepcao = false; // o quarto é entregue ao grupo de hospedes logo a chave não está mais na recepção
                 TemGenteDentroDoQuarto = true;
             }
         }finally {
@@ -55,22 +54,19 @@ public class Quarto {
         }
     }
 
-
-    public void devolverChaveNaRecepcao() {
+    // uma thread por vez devolve a chave na recepcao
+    public synchronized void devolverChaveNaRecepcao() {
         if (!TemGenteDentroDoQuarto) { // Se não há hóspedes no quarto ... camareira entra
             chaveNaRecepcao = true; // Marca que a chave está na recepção
-//            System.out.println("Chave foi devolvida na recepção).");
             System.out.println("Chave do quarto " + numeroQuarto + " foi devolvida na recepção.");
         }
     }
 
-    // Método para pegar a chave da recepção
-    public void pegarChaveDaRecepcao() {
+    // uma thread por vez pega a chave da recepção
+    public synchronized void pegarChaveDaRecepcao() {
         chaveNaRecepcao = false; // Marca que a chave não está mais na recepção
         TemGenteDentroDoQuarto = true;
     }
-
-
 
 
     public List<GrupoHospedes> getGrupos() {
@@ -81,11 +77,11 @@ public class Quarto {
         return numeroQuarto;
     }
 
-    public boolean isChaveNaRecepcao() { // getter
+    public synchronized boolean isChaveNaRecepcao() { 
         return chaveNaRecepcao;
     }
 
-    public void setChaveNaRecepcao(boolean chaveNaRecepcao) {
+    public synchronized void setChaveNaRecepcao(boolean chaveNaRecepcao) {
         this.chaveNaRecepcao = chaveNaRecepcao;
     }
 
@@ -101,4 +97,3 @@ public class Quarto {
         TemGenteDentroDoQuarto = temGenteDentroDoQuarto;
     }
 }
-
